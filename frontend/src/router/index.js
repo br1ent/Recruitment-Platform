@@ -32,25 +32,29 @@ const router = createRouter({
       name: "campus-index",
     },
     {
-      path: '/user/login',
+      path: '/auth/login',
       component: LoginView,
       name: "login-index",
     },
     {
-      path: '/user/register',
+      path: '/auth/register',
       component: RegisterView,
       name: "register-index",
     },
     {
-      path: '/user/resetpwd',
+      path: '/auth/resetpwd',
       component: ResetPasswordView,
       name: "resetpwd-index",
     },
     {
-      path: '/404',
+      path: '/',
+      redirect: '/home',
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
       component: NotFoundView,
-      name: "error-index",
-    }
+    },
   ],
 })
 
