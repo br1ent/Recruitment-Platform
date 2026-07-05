@@ -13,20 +13,28 @@ class LoginView(APIView):
         password = request.data.get('password', '').strip()
 
         if not email or not password:
-            return Response({"message": "邮箱和密码不能为空"}, status=400)
+            return Response({
+                "message": "邮箱和密码不能为空"
+            })
 
         try:
             user_obj = User.objects.get(email=email)
         except User.DoesNotExist:
-            return Response({"message": "邮箱或密码错误"}, status=401)
+            return Response({
+                "message": "邮箱或密码错误"
+            })
 
         user = authenticate(username=user_obj.username, password=password)
 
         if user is None:
-            return Response({"message": "邮箱或密码错误"}, status=401)
+            return Response({
+                "message": "邮箱或密码错误"
+            })
 
         if not user.is_active:
-            return Response({"message": "账号已被禁用"}, status=403)
+            return Response({
+                "message": "账号已被禁用"
+            })
 
         profile = UserProfile.objects.get(user=user)
         refresh = RefreshToken.for_user(user)
@@ -37,7 +45,7 @@ class LoginView(APIView):
             "user_id": user.id,
             "email": user.email,
             "phone": profile.phone,
-            "avatar": profile.avatar,
+            "avatar": profile.avatar.url if profile.avatar else None,
             "resume": profile.resume.url if profile.resume else None,
             "role": profile.role,
             "status": profile.status,

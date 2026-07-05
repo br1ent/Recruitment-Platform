@@ -15,7 +15,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', verbose_name='关联用户')
 
     phone = models.CharField(max_length=20, blank=True, verbose_name='手机号')
-    avatar = models.URLField(blank=True, verbose_name='头像')
+    avatar = models.ImageField(upload_to='user/avatar/', default='user/avatar/default.png', verbose_name='头像')
     resume = models.FileField(upload_to='resumes/', blank=True, null=True, verbose_name='简历')
 
     role = models.CharField(
