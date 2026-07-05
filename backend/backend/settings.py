@@ -128,7 +128,7 @@ if DEBUG:
 else:
     STATIC_ROOT = BASE_DIR / 'static'  # 生产阶段使用
 
-MEDIA_URL = 'http://127.0.0.1:8000/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # 使用JWT认证
@@ -157,3 +157,5 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
+
+APPEND_SLASH = False

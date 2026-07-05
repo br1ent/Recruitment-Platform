@@ -19,10 +19,10 @@
       <label class="label text-base">确认密码</label>
       <input type="password" class="input" />
 
-      <button class="btn btn-neutral mt-4">注册</button>
+      <button class="btn btn-accent mt-4">注册</button>
       <div class="mt-2">
         <span class="text-sm">已经有账号了？点击</span>
-        <router-link :to="{name: 'login-index'}" class="link link-hover text-sm">返回登录</router-link>
+        <router-link :to="{name: 'login-index'}" class="link link-hover link-accent text-sm">返回登录</router-link>
       </div>
     </fieldset>
   </div>
